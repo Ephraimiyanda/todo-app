@@ -1,0 +1,188 @@
+h1{
+    letter-spacing: 8px;
+    font-size:60px;
+    margin-top: -38px;
+    color:white;
+
+}
+input{
+   
+    border-radius: 4px;
+    border-width: 0px;
+    width: 442px;
+    height: 30px;
+}
+.todo{
+    margin-left: 240px;
+}
+
+.container{
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    margin-top: 20px;
+    width: 450px;
+    background-color: white;
+    box-shadow: 0 1px 4px 0 rgba( 0, 0, 0, 0.12), 0 1px 4px 0 rgba( 0, 0, 0, 0.18);
+    height: 250px;
+    overflow:auto;
+  
+}
+
+
+body{
+   
+    background-image: url(./images/bg-desktop-light.jpg);
+    background-repeat: no-repeat;
+    background-color: rgb(238, 237, 237);
+}
+.mode{
+    display:flex;
+}
+.pic{
+    margin-top: -10px;
+    margin-left: 260px;
+}
+.todo{
+   
+   margin-top: 155px;
+}
+.close {
+    position: absolute;
+    right: 0;
+    top: 0;
+  padding: 12px 16px 12px 16px;
+  }
+  
+  .close:hover {
+    background-color: white;
+    color: black;
+  }
+  
+li{
+    display: block;
+    text-decoration: none;
+    cursor: pointer;
+    list-style: none;
+    padding-left:10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid black;
+    border-width: 1px;
+    border-color: rgb(86, 85, 85);
+}
+.crossed{
+    color: rgb(122, 119, 119);
+    text-decoration: line-through;
+   
+}
+.cross{
+   display: flex;
+    margin-top: -20px;
+    margin-left: 340px;
+  
+}
+.lower{
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    background-color: white;
+   padding-top: 12px;
+    display: flex;
+    list-style: none;
+    margin-top: 0px;
+    padding-bottom:10px ;
+    width:410px;
+    box-shadow: 0px 0px 0px 0px rgba( 0, 0, 0, 0.12), 0 1px 4px 0 rgba( 0, 0, 0, 0.18);
+
+}
+.top li{
+    list-style: url(../images/\ \(2\).svg);
+}
+.inside{
+    display:flex;
+    list-style: none;
+   
+}
+.items{
+    
+    margin-left: -24px;
+    margin-right: 20px;
+}
+.dynamic{
+    height: 15px;
+    background-color: white;
+    border: 0px;
+}
+.dark .dynamic{
+    background-color: rgb(61, 60, 60);
+    color: white;
+}
+.comp{
+    cursor: pointer;
+    margin-left: -20px;
+    font-size: small;
+    border:none;
+   background-color: white;
+}
+.items,.all,.active,.clr{
+    padding-left: 0px;
+    font-size: small;
+   margin-right: 14px;
+    border:none;
+    background-color: white;
+    list-style: none;
+    cursor: pointer;
+}
+.all{
+    margin-left: 5px;
+}
+.clr{
+    margin-right: 60px;
+}
+.last{
+    text-align: center;
+}
+.circle{
+    background-repeat:no-repeat;
+    background-color:purple;
+    background-position:center;
+    background-image: url(./images/icon-check.svg);
+}
+
+/*light mode*/
+.dark input {
+    background-color: rgb(61, 60, 60);
+    color:white;
+}
+.dark .container {
+    background-color:  rgb(61, 60, 60);
+    color: white;
+}
+.dark .lower{
+    color: white;
+    background-color: rgb(61, 60, 60);
+    border-top: 1px solid rgb(185, 185, 185);
+}
+body.dark{
+   
+    background-image: url(./images/bg-desktop-dark.jpg);
+    background-repeat: no-repeat;
+    background-color: rgb(77, 76, 76);
+}
+
+.dark li{
+    border-color: white;
+    background-color:  rgb(61, 60, 60);
+    color: white;
+  
+}
+.dark .items,.dark .all,.dark .active,.dark .clr,.dark .comp {
+    list-style: none;
+    background-color:  rgb(61, 60, 60);
+    border: none;
+    cursor: pointer;
+}
+.dark button{
+     background-color: rgb(61, 60, 60);
+}
