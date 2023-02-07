@@ -71,12 +71,14 @@ function addListAfterKeypress(event){
 input.addEventListener("keypress", addListAfterKeypress); 
 
 function countItems(){
-  var listItems = document.getElementsByTagName("li");
-  var listTotal= listItems.length ;
-alert(listTotal)
+ return `<button class= "dynamic">
+ ${input.value}</button>`
+
 }
+document.addEventListener("change", countItems)
 
 
 
  
+
 

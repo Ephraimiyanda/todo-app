@@ -1,3 +1,4 @@
+
 h1{
     letter-spacing: 8px;
     font-size:60px;
@@ -13,8 +14,9 @@ input{
     height: 30px;
 }
 .todo{
-    margin-left: 240px;
+    margin-top: 155px;
 }
+
 
 .container{
     border-bottom-left-radius: 0px;
@@ -27,12 +29,14 @@ input{
     box-shadow: 0 1px 4px 0 rgba( 0, 0, 0, 0.12), 0 1px 4px 0 rgba( 0, 0, 0, 0.18);
     height: 250px;
     overflow:auto;
-  
+
 }
 
 
 body{
-   
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background-image: url(./images/bg-desktop-light.jpg);
     background-repeat: no-repeat;
     background-color: rgb(238, 237, 237);
@@ -44,10 +48,7 @@ body{
     margin-top: -10px;
     margin-left: 260px;
 }
-.todo{
-   
-   margin-top: 155px;
-}
+
 .close {
     position: absolute;
     right: 0;
@@ -169,6 +170,9 @@ body.dark{
     background-image: url(./images/bg-desktop-dark.jpg);
     background-repeat: no-repeat;
     background-color: rgb(77, 76, 76);
+}
+.dark .circle{
+    background-color: purple;
 }
 
 .dark li{
