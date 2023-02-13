@@ -69,9 +69,9 @@ li{
     padding-left:10px;
     padding-top: 10px;
     padding-bottom: 10px;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid;
     border-width: 1px;
-    border-color: rgb(86, 85, 85);
+    border-color: rgb(173, 168, 168);
 }
 .crossed{
     color: rgb(122, 119, 119);
@@ -103,7 +103,7 @@ li{
 .inside{
     display:flex;
     list-style: none;
-   
+    
 }
 .items{
     
@@ -114,10 +114,11 @@ li{
     height: 15px;
     background-color: white;
     border: 0px;
+    color: rgb(124, 122, 122);
 }
 .dark .dynamic{
     background-color: rgb(61, 60, 60);
-    color: white;
+    color: rgb(124, 122, 122);
 }
 .comp{
     cursor: pointer;
@@ -125,8 +126,9 @@ li{
     font-size: small;
     border:none;
    background-color: white;
+   color: rgb(124, 122, 122);
 }
-.items,.all,.active,.clr{
+.items,.all,.active,.completed{
     padding-left: 0px;
     font-size: small;
    margin-right: 14px;
@@ -134,12 +136,18 @@ li{
     background-color: white;
     list-style: none;
     cursor: pointer;
+    color: rgb(124, 122, 122);
 }
 .all{
+    color: blue;
     margin-left: 5px;
 }
-.clr{
+
+.completed{
     margin-right: 60px;
+    font-size:small;
+    margin-right: 70px;
+        color: rgb(124, 122, 122);
 }
 .last{
     text-align: center;
@@ -163,7 +171,7 @@ li{
 .dark .lower{
     color: white;
     background-color: rgb(61, 60, 60);
-    border-top: 1px solid rgb(185, 185, 185);
+    border-top: 1px solid rgb(146, 143, 143);
 }
 body.dark{
    
@@ -176,17 +184,87 @@ body.dark{
 }
 
 .dark li{
-    border-color: white;
+    border-color: rgb(124, 122, 122);
     background-color:  rgb(61, 60, 60);
     color: white;
   
 }
-.dark .items,.dark .all,.dark .active,.dark .clr,.dark .comp {
+.dark .items,.dark .all,.dark .active,.dark .completed,.dark .comp {
     list-style: none;
     background-color:  rgb(61, 60, 60);
     border: none;
     cursor: pointer;
+    color: rgb(124, 122, 122);
+}
+.dark .all{
+    color: blue;
 }
 .dark button{
      background-color: rgb(61, 60, 60);
+}
+@media only screen and (max-device-width:440px) and (min-device-width:390px){
+body{
+   
+    
+}
+
+.container,input{
+  
+    width: 350px;
+    margin-left: 105px;
+}
+
+.lower{
+    font-size: x-small;
+    width: 310px;
+    margin-left: 105px;
+    height: 20px;
+}
+.all,.active,.completed{
+    padding-top: 10px;
+    margin-top: 60px;
+    background-color: white;
+    width: 50px;
+    height: 30px;
+    color: rgb(61, 60, 60);
+}
+.all{
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    margin-right: -10px;
+    margin-left: -190px;
+    padding-left: 100px;
+    color: blue;
+}
+
+.comp{
+    margin-left: -120px;
+    width: 120px;
+}
+.items{
+    width: 120px;
+    height: 30px;
+}
+.completed{
+    margin-left: -19px;
+    margin-right: 0px;
+    padding-right: 110px;
+    padding-left: 10px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+#img{
+
+}
+h1{
+    width: auto;
+    margin-left: 105px;
+    font-size: xxx-large;
+}
+.pic{
+    margin-top: -20px;
+    margin-left: 190px;
+   padding-right: 53px; 
+  width: 20px;
+}
 }
