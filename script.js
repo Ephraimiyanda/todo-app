@@ -2,7 +2,7 @@ var input=document.getElementById("inputs");
 var ol= document.querySelector("section");
 const light = document.querySelector(".pic");
 
-
+//togle between light and dark mode
 light.addEventListener('click', () => {
    document.body.classList.toggle('dark')
    if(document.body.classList.contains('dark')){
@@ -21,8 +21,10 @@ function inputLength(){
 }
 
 function createListElement(){
-  
+
    var li = document.createElement("li");
+
+   //create circle button
    var circle = document.createElement("button");
    circle.style.width="20px"
    circle.style.height="20px"
@@ -30,14 +32,14 @@ function createListElement(){
    circle.style.borderRadius="10px"
    circle.style.marginRight="30px"
   
-
-
-function treble(){
+//toggle list style when circle button is clicked
+function toggleStyles(){
         circle.classList.toggle('circle');
         li.classList.toggle('crossed');
 }
-  circle.addEventListener("click", treble);
+  circle.addEventListener("click", toggleStyles);
 
+  //create x button
    var img = document.createElement("span");
    img.style.backgroundImage="url(./images/icon-cross.svg)"
   img.style.backgroundRepeat="no-repeat"
@@ -46,20 +48,81 @@ function treble(){
    img.style.paddingTop="10px"
    img.style.paddingRight="28px"
    img.style.marginLeft="-30px"
-
-
-
+  
   li.appendChild(circle);
    li.appendChild(document.createTextNode(input.value));
    ol.appendChild(li); 
    li.appendChild(img);
   input.value = ""
+
+  //delete list when x is clicked
     for (var i = 0; i < close.length; i++) {
       close[i].onclick = function() {
         var div = this.parentElement;
-        div.style.display = "none";
+        div.remove();
+        document.querySelector(".dynamic").innerHTML = listItems.length;  
       }
     }
+
+//to show number of items remaining
+const listItems = document.getElementsByTagName("li");
+ document.querySelector(".dynamic").innerHTML = listItems.length;
+
+
+ //function to show all list items
+const all = document.querySelector(".all");
+function showAll(){
+   if(li.style.display="none"){
+     li.style.display="block"
+     document.querySelector(".dynamic").innerHTML = listItems.length;
+     activeButton.style.color="rgb(124, 122, 122)"
+     all.style.color="blue"
+     completed.style.color="rgb(124, 122, 122)"
+   }
+   }
+ all.addEventListener("click",showAll);
+
+
+
+//function to show active list
+const activeButton = document.querySelector(".active");
+function active(){
+  if(li.classList.contains('crossed')){
+    li.style.display="none"
+    activeButton.style.color="blue"
+    all.style.color="rgb(124, 122, 122)"
+    completed.style.color="rgb(124, 122, 122)"
+   }else{
+      li.style.display="block"
+    }
+  }
+activeButton.addEventListener("click", active);
+
+
+ //function to show completed
+const completed = document.querySelector(".completed");
+function completedList(){
+   if(!li.classList.contains('crossed')){
+     li.style.display="none"
+     activeButton.style.color="rgb(124, 122, 122)"
+     all.style.color="rgb(124, 122, 122)"
+     completed.style.color="blue"
+    }else{
+      li.style.display="block"
+    }
+   }
+ completed.addEventListener("click",completedList);
+
+ //function to show completed
+const clearCompleted = document.querySelector(".comp");
+function clearOut(){
+   if(li.classList.contains('crossed')){
+     li.remove();
+    }else{
+      li.style.display="block"
+    }
+   }
+ clearCompleted.addEventListener("click",clearOut)
 }
 
 
@@ -70,12 +133,9 @@ function addListAfterKeypress(event){
 }
 input.addEventListener("keypress", addListAfterKeypress); 
 
-function countItems(){
- return `<button class= "dynamic">
- ${input.value}</button>`
 
-}
-document.addEventListener("change", countItems)
+
+
 
 
 
