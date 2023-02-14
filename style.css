@@ -202,7 +202,7 @@ body.dark{
 .dark button{
      background-color: rgb(61, 60, 60);
 }
-@media only screen and (max-device-width:440px) and (min-device-width:390px){
+@media only screen and (max-device-width:400px) and (min-device-width:330px){
 body{
    
     
