@@ -7,11 +7,18 @@ h1{
 
 }
 input{
-   
+   margin-right: 3px;
     border-radius: 4px;
     border-width: 0px;
-    width: 442px;
+    width: 406px;
     height: 30px;
+}
+.enterBtn{
+    border-radius: 4px;
+    border-width: 0px;
+    height: 35px;
+    background: white;
+    border: 1px solid black;
 }
 .todo{
     margin-top: 155px;
@@ -202,17 +209,18 @@ body.dark{
 .dark button{
      background-color: rgb(61, 60, 60);
 }
-@media only screen and (max-device-width:400px) and (min-device-width:330px){
-body{
-   
-    
-}
+@media only screen and (max-device-width:540px) and (min-device-width:330px){
 
-.container,input{
+
+.container{
   
     width: 350px;
     margin-left: 105px;
 }
+input{
+    width: 306px;
+    margin-left: 105px;
+    }
 
 .lower{
     font-size: x-small;

@@ -1,6 +1,15 @@
-var input=document.getElementById("inputs");
-var ol= document.querySelector("section");
+const input=document.getElementById("inputs");
+const ol= document.querySelector("section");
 const light = document.querySelector(".pic");
+const add = document.querySelector(".enterBtn");
+const close = document.getElementsByTagName("span");
+const boxs =document.getElementsByTagName("button");
+const listItems = document.getElementsByTagName("li");
+const all = document.querySelector(".all");
+const activeButton = document.querySelector(".active");
+const completed = document.querySelector(".completed");
+const clearCompleted = document.querySelector(".comp");
+
 
 //togle between light and dark mode
 light.addEventListener('click', () => {
@@ -13,8 +22,6 @@ light.addEventListener('click', () => {
       }
    
 )
-var close = document.getElementsByTagName("span");
-var boxs =document.getElementsByTagName("button");
 
 function inputLength(){
    return input.value.length;
@@ -32,12 +39,24 @@ function createListElement(){
    circle.style.borderRadius="10px"
    circle.style.marginRight="30px"
   
+   
+  //to show number of items remaining
+  const uncheckedList = document.querySelectorAll("li.crossed").length-1;
+  document.querySelector(".dynamic").innerHTML =listItems.length-uncheckedList;
+ 
+ 
+
+  
 //toggle list style when circle button is clicked
-function toggleStyles(){
+function toggleStyles(){ 
         circle.classList.toggle('circle');
         li.classList.toggle('crossed');
+        const uncheckedList = document.querySelectorAll("li.crossed").length;
+        document.querySelector(".dynamic").innerHTML =listItems.length-uncheckedList;
 }
-  circle.addEventListener("click", toggleStyles);
+
+circle.addEventListener("click", toggleStyles);
+
 
   //create x button
    var img = document.createElement("span");
@@ -53,84 +72,96 @@ function toggleStyles(){
    li.appendChild(document.createTextNode(input.value));
    ol.appendChild(li); 
    li.appendChild(img);
-  input.value = ""
+
+  input.value = "";
+
 
   //delete list when x is clicked
     for (var i = 0; i < close.length; i++) {
       close[i].onclick = function() {
         var div = this.parentElement;
         div.remove();
-        document.querySelector(".dynamic").innerHTML = listItems.length;  
+        const uncheckedList = document.querySelectorAll("li.crossed").length;
+        document.querySelector(".dynamic").innerHTML =listItems.length-uncheckedList;
       }
     }
-
-//to show number of items remaining
-const listItems = document.getElementsByTagName("li");
- document.querySelector(".dynamic").innerHTML = listItems.length;
-
-
+    function prevent(event){
+      event.preventDefault()
+          } 
  //function to show all list items
-const all = document.querySelector(".all");
 function showAll(){
-   if(li.style.display="none"){
+  const uncheckedList = document.querySelectorAll("li.crossed").length;
+  document.querySelector(".dynamic").innerHTML =listItems.length-uncheckedList;
+     if(li.style.display="none"){
      li.style.display="block"
-     document.querySelector(".dynamic").innerHTML = listItems.length;
-     activeButton.style.color="rgb(124, 122, 122)"
+         activeButton.style.color="rgb(124, 122, 122)"
      all.style.color="blue"
      completed.style.color="rgb(124, 122, 122)"
-   }
+   }false
    }
  all.addEventListener("click",showAll);
 
 
-
 //function to show active list
-const activeButton = document.querySelector(".active");
 function active(){
-  if(li.classList.contains('crossed')){
+  const uncheckedList = document.querySelectorAll("li.crossed").length;
+  document.querySelector(".dynamic").innerHTML =listItems.length-uncheckedList;
+  activeButton.style.color="blue"
+  all.style.color="rgb(124, 122, 122)"
+  completed.style.color="rgb(124, 122, 122)"
+    if(li.classList.contains('crossed')){
     li.style.display="none"
-    activeButton.style.color="blue"
-    all.style.color="rgb(124, 122, 122)"
-    completed.style.color="rgb(124, 122, 122)"
+    document.querySelector(".dynamic").innerHTML =uncheckedList;
    }else{
       li.style.display="block"
     }
+   
   }
 activeButton.addEventListener("click", active);
 
 
  //function to show completed
-const completed = document.querySelector(".completed");
 function completedList(){
-   if(!li.classList.contains('crossed')){
-     li.style.display="none"
-     activeButton.style.color="rgb(124, 122, 122)"
-     all.style.color="rgb(124, 122, 122)"
-     completed.style.color="blue"
+  const uncheckedList = document.querySelectorAll("li.crossed").length;
+  document.querySelector(".dynamic").innerHTML =uncheckedList;
+  activeButton.style.color="rgb(124, 122, 122)"
+  all.style.color="rgb(124, 122, 122)"
+  completed.style.color="blue"
+  document.querySelector(".dynamic").innerHTML = uncheckedList; 
+   if(li.classList.contains('crossed')){
+     li.style.display="block"
     }else{
-      li.style.display="block"
+      li.style.display="none"
     }
-   }
+
+     }
  completed.addEventListener("click",completedList);
 
- //function to show completed
-const clearCompleted = document.querySelector(".comp");
+ //function to clear completed
 function clearOut(){
    if(li.classList.contains('crossed')){
      li.remove();
+     return showAll()
     }else{
       li.style.display="block"
     }
+   
    }
  clearCompleted.addEventListener("click",clearOut)
 }
 
+function addListAfterClick(){
+  if(inputLength() > 0){
+    createListElement();
+  }
+}
 
 function addListAfterKeypress(event){
-   if (inputLength() > 0 && event.keyCode === 13){
+   if(inputLength() > 0 && event.keyCode === 13){
       createListElement();
    }
 }
+add.addEventListener("click", addListAfterClick)
 input.addEventListener("keypress", addListAfterKeypress); 
 
 
