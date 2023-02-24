@@ -85,9 +85,7 @@ circle.addEventListener("click", toggleStyles);
         document.querySelector(".dynamic").innerHTML =listItems.length-uncheckedList;
       }
     }
-    function prevent(event){
-      event.preventDefault()
-          } 
+  
  //function to show all list items
 function showAll(){
   const uncheckedList = document.querySelectorAll("li.crossed").length;
@@ -104,18 +102,21 @@ function showAll(){
 
 //function to show active list
 function active(){
-  const uncheckedList = document.querySelectorAll("li.crossed").length;
-  document.querySelector(".dynamic").innerHTML =listItems.length-uncheckedList;
-  activeButton.style.color="blue"
+
+   activeButton.style.color="blue"
   all.style.color="rgb(124, 122, 122)"
   completed.style.color="rgb(124, 122, 122)"
     if(li.classList.contains('crossed')){
     li.style.display="none"
-    document.querySelector(".dynamic").innerHTML =uncheckedList;
    }else{
       li.style.display="block"
     }
-   
+    const uncheckedList = document.querySelectorAll("li.crossed").length;
+    if(uncheckedList=0){
+      document.querySelector(".dynamic").innerHTML =0;
+    }else{
+      return document.querySelector(".dynamic").innerHTML =listItems.length-uncheckedList;
+    }
   }
 activeButton.addEventListener("click", active);
 
