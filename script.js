@@ -41,18 +41,18 @@ function createListElement(){
   
    
   //to show number of items remaining
-  const uncheckedList = document.querySelectorAll("li.crossed").length-1;
-  document.querySelector(".dynamic").innerHTML =listItems.length-uncheckedList;
+  const checkedList = document.querySelectorAll("li.crossed").length-1;
+  document.querySelector(".dynamic").innerHTML =listItems.length-checkedList;
  
- 
+
 
   
 //toggle list style when circle button is clicked
 function toggleStyles(){ 
         circle.classList.toggle('circle');
         li.classList.toggle('crossed');
-        const uncheckedList = document.querySelectorAll("li.crossed").length;
-        document.querySelector(".dynamic").innerHTML =listItems.length-uncheckedList;
+        const checkedList = document.querySelectorAll("li.crossed").length;
+        document.querySelector(".dynamic").innerHTML =listItems.length-checkedList;
 }
 
 circle.addEventListener("click", toggleStyles);
@@ -75,27 +75,27 @@ circle.addEventListener("click", toggleStyles);
 
   input.value = "";
 
-
+ 
   //delete list when x is clicked
     for (var i = 0; i < close.length; i++) {
       close[i].onclick = function() {
         var div = this.parentElement;
         div.remove();
-        const uncheckedList = document.querySelectorAll("li.crossed").length;
-        document.querySelector(".dynamic").innerHTML =listItems.length-uncheckedList;
+        const checkedList = document.querySelectorAll("li.crossed").length;
+        document.querySelector(".dynamic").innerHTML =listItems.length-checkedList;
       }
     }
   
  //function to show all list items
 function showAll(){
-  const uncheckedList = document.querySelectorAll("li.crossed").length;
-  document.querySelector(".dynamic").innerHTML =listItems.length-uncheckedList;
+  const checkedList = document.querySelectorAll("li.crossed").length;
+  document.querySelector(".dynamic").innerHTML =listItems.length-checkedList;
      if(li.style.display="none"){
      li.style.display="block"
          activeButton.style.color="rgb(124, 122, 122)"
      all.style.color="blue"
      completed.style.color="rgb(124, 122, 122)"
-   }false
+   }
    }
  all.addEventListener("click",showAll);
 
@@ -111,11 +111,11 @@ function active(){
    }else{
       li.style.display="block"
     }
-    const uncheckedList = document.querySelectorAll("li.crossed").length;
+    const checkedList = document.querySelectorAll("li.crossed").length;
     if(uncheckedList=0){
       document.querySelector(".dynamic").innerHTML =0;
     }else{
-      return document.querySelector(".dynamic").innerHTML =listItems.length-uncheckedList;
+      return document.querySelector(".dynamic").innerHTML =listItems.length-checkedList;
     }
   }
 activeButton.addEventListener("click", active);
@@ -123,12 +123,12 @@ activeButton.addEventListener("click", active);
 
  //function to show completed
 function completedList(){
-  const uncheckedList = document.querySelectorAll("li.crossed").length;
-  document.querySelector(".dynamic").innerHTML =uncheckedList;
+  const checkedList = document.querySelectorAll("li.crossed").length;
+  document.querySelector(".dynamic").innerHTML =checkedList;
   activeButton.style.color="rgb(124, 122, 122)"
   all.style.color="rgb(124, 122, 122)"
   completed.style.color="blue"
-  document.querySelector(".dynamic").innerHTML = uncheckedList; 
+  document.querySelector(".dynamic").innerHTML = checkedList; 
    if(li.classList.contains('crossed')){
      li.style.display="block"
     }else{
@@ -149,7 +149,15 @@ function clearOut(){
    
    }
  clearCompleted.addEventListener("click",clearOut)
+
+
+
+
+
+
 }
+
+
 
 function addListAfterClick(){
   if(inputLength() > 0){
@@ -160,6 +168,8 @@ function addListAfterClick(){
 function addListAfterKeypress(event){
    if(inputLength() > 0 && event.keyCode === 13){
       createListElement();
+   }else if(inputLength() <= 0 && event.keyCode === 13){
+    alert("please input something")
    }
 }
 add.addEventListener("click", addListAfterClick)
@@ -167,6 +177,11 @@ input.addEventListener("keypress", addListAfterKeypress);
 
 
 
+ //store in localstorage
+
+
+  localStorage.setItem('items', createListElement);
+  console.log(localStorage)
 
 
 
