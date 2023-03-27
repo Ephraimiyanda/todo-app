@@ -1,4 +1,14 @@
 
+body{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background-image: url(./images/bg-desktop-light.jpg);
+    background-repeat: no-repeat;
+    background-color: rgb(238, 237, 237);
+    
+}
 h1{
     letter-spacing: 8px;
     font-size:60px;
@@ -40,14 +50,6 @@ input{
 }
 
 
-body{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-image: url(./images/bg-desktop-light.jpg);
-    background-repeat: no-repeat;
-    background-color: rgb(238, 237, 237);
-}
 .mode{
     display:flex;
 }
@@ -209,23 +211,33 @@ body.dark{
 .dark button{
      background-color: rgb(61, 60, 60);
 }
-@media  (max-width:540px) and (min-width:330px){
-
-
-.container{
+@media  (max-width:540px) and (min-width:230px){
+.todo{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
   
-    width: 350px;
-    margin-left: 105px;
+    background-repeat: no-repeat;
+}
+
+#img{
+    margin: 0px;
+    margin-left: -80px;
+    margin-right: 0px;
+}
+.container{
+  margin-left: 0px;
+    width: 330px;
+  
 }
 input{
-    width: 306px;
-    margin-left: 105px;
+    width: 290px;
+    margin-left: 0px;
     }
 
 .lower{
     font-size: x-small;
-    width: 310px;
-    margin-left: 105px;
+    width: 290px;
     height: 20px;
 }
 .all,.active,.completed{
@@ -241,7 +253,7 @@ input{
     border-bottom-left-radius: 3px;
     margin-right: -10px;
     margin-left: -190px;
-    padding-left: 100px;
+    padding-left: 60px;
     color: blue;
 }
 
@@ -256,12 +268,15 @@ input{
 .completed{
     margin-left: -19px;
     margin-right: 0px;
-    padding-right: 110px;
-    padding-left: 10px;
+    padding-right: 70px;
+    padding-left: 40px;
     border-top-right-radius: 3px;
     border-bottom-right-radius: 3px;
 }
-
+.active{
+    padding-left: 30px;
+    padding-right: 0px;
+}
 h1{
     width: auto;
     margin-left: 105px;
