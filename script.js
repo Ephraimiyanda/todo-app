@@ -9,7 +9,7 @@ const all = document.querySelector(".all");
 const activeButton = document.querySelector(".active");
 const completed = document.querySelector(".completed");
 const clearCompleted = document.querySelector(".comp");
-
+const items = JSON.parse(localStorage.getItem('list')) || [];
 
 //togle between light and dark mode
 light.addEventListener('click', () => {
@@ -154,10 +154,13 @@ function clearOut(){
 
 
 
-
 }
 
-
+ //store in localstorage
+//  localStorage.setItem('items', JSON.stringify(createListElement()));
+ 
+// console.log(localStorage)
+// console.log(listItems)
 
 function addListAfterClick(){
   if(inputLength() > 0){
@@ -177,11 +180,6 @@ input.addEventListener("keypress", addListAfterKeypress);
 
 
 
- //store in localstorage
-
-
-  localStorage.setItem('items', createListElement);
-  console.log(localStorage)
 
 
 

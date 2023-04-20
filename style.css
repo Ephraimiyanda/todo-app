@@ -1,26 +1,22 @@
-
-body{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    background-image: url(./images/bg-desktop-light.jpg);
-    background-repeat: no-repeat;
-    background-color: rgb(238, 237, 237);
-    
+*{
+    box-sizing: border-box;
+    padding:0px;
+    margin: 0px;
 }
 h1{
     letter-spacing: 8px;
     font-size:60px;
-    margin-top: -38px;
     color:white;
 
+}
+.input-container{
+    display: flex;
 }
 input{
    margin-right: 3px;
     border-radius: 4px;
-    border-width: 0px;
-    width: 406px;
+    border-width: 1px;
+    width:90%;
     height: 30px;
 }
 .enterBtn{
@@ -29,11 +25,29 @@ input{
     height: 35px;
     background: white;
     border: 0.2px solid black;
+    width: 37px;
+    margin-left: 3px;
 }
 .todo{
-    margin-top: 155px;
+    background-image: url(./images/bg-desktop-light.jpg);
+    background-repeat: no-repeat;
+    background-color: rgb(238, 237, 237);
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    width: 100%;
+    height: 250px;
 }
-
+.todo-body{
+    display: grid;
+    flex-wrap: unset;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: -80px;
+}
 
 .container{
     border-bottom-left-radius: 0px;
@@ -41,7 +55,7 @@ input{
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
     margin-top: 20px;
-    width: 450px;
+    width: 100%;
     background-color: white;
     box-shadow: 0 1px 4px 0 rgba( 0, 0, 0, 0.12), 0 1px 4px 0 rgba( 0, 0, 0, 0.18);
     height: 250px;
@@ -52,11 +66,25 @@ input{
 
 .mode{
     display:flex;
+    justify-content: space-around;
+    
 }
 .pic{
-    margin-top: -10px;
-    margin-left: 260px;
+display: flex;
+flex-wrap: nowrap;
+justify-content:space-between;
+width: 450px;
+gap: 20px;
+margin-top: 60px;
 }
+#img{
+    margin: 0px;
+    margin-top: 24px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+
 
 .close {
     position: absolute;
@@ -102,7 +130,7 @@ li{
     list-style: none;
     margin-top: 0px;
     padding-bottom:10px ;
-    width:410px;
+    width: 100%;
     box-shadow: 0px 0px 0px 0px rgba( 0, 0, 0, 0.12), 0 1px 4px 0 rgba( 0, 0, 0, 0.18);
 
 }
@@ -112,14 +140,12 @@ li{
 .inside{
     display:flex;
     list-style: none;
-    
+    margin-left: -60px;
+    width: 50%;
 }
-.items{
-    
-    margin-left: -24px;
-    margin-right: 20px;
-}
+
 .dynamic{
+    padding-right: 4px;
     height: 15px;
     background-color: white;
     border: 0px;
@@ -130,6 +156,7 @@ li{
     color: rgb(124, 122, 122);
 }
 .comp{
+    width: 100px;
     cursor: pointer;
     margin-left: -20px;
     font-size: small;
@@ -147,6 +174,12 @@ li{
     cursor: pointer;
     color: rgb(124, 122, 122);
 }
+.items{
+    margin-right: 0px;
+    width: 200px;
+    padding-left: 10px;
+    display: flex;
+}
 .all{
     color: blue;
     margin-left: 5px;
@@ -156,14 +189,15 @@ li{
     margin-right: 60px;
     font-size:small;
     margin-right: 70px;
-        color: rgb(124, 122, 122);
+    color: rgb(124, 122, 122);
 }
 .last{
     text-align: center;
 }
 .circle{
+    
+    background:purple;
     background-repeat:no-repeat;
-    background-color:purple;
     background-position:center;
     background-image: url(./images/icon-check.svg);
 }
@@ -182,9 +216,12 @@ li{
     background-color: rgb(61, 60, 60);
     border-top: 1px solid rgb(146, 143, 143);
 }
+.dark .todo{
+    background-image: url(./images/bg-desktop-dark.jpg);
+}
 body.dark{
    
-    background-image: url(./images/bg-desktop-dark.jpg);
+
     background-repeat: no-repeat;
     background-color: rgb(77, 76, 76);
 }
@@ -211,81 +248,62 @@ body.dark{
 .dark button{
      background-color: rgb(61, 60, 60);
 }
-@media  (max-width:540px) and (min-width:230px){
-.todo{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  
-    background-repeat: no-repeat;
+.dark .inside{
+    background-color:rgb(61, 60, 60) ;
 }
 
-#img{
-    margin: 0px;
-    margin-left: -80px;
-    margin-right: 0px;
-}
-.container{
-  margin-left: 0px;
-    width: 330px;
-  
-}
-input{
-    width: 290px;
-    margin-left: 0px;
+
+
+
+@media  (max-width:540px) {
+    body{
+        background-size: 1500px;
     }
-
+.todo{
+    padding-left: 5%;
+    padding-right:5% ;
+}
+.todo-body{
+    display: flex;
+    width: 100%;
+    padding-left: 10%;
+    padding-right: 10%;
+}
 .lower{
-    font-size: x-small;
-    width: 290px;
-    height: 20px;
-}
-.all,.active,.completed{
-    padding-top: 16px;
-    margin-top: 60px;
-    background-color: white;
-    width: 50px;
-    height: 30px;
-    color: rgb(61, 60, 60);
-}
-.all{
-    border-top-left-radius: 3px;
-    border-bottom-left-radius: 3px;
-    margin-right: -10px;
-    margin-left: -190px;
-    padding-left: 60px;
-    color: blue;
-}
-
-.comp{
-    margin-left: -120px;
-    width: 120px;
+    height: 47px;
+    display: flex;
+    justify-content: space-evenly;
+   
+    padding-right:0px;
 }
 .items{
-    width: 120px;
+    margin-top: -2px;
+}
+.inside{
     height: 30px;
+    margin-top: 90px;
+    width: 80%;
+    display: flex;
+    justify-content: space-evenly;
+    box-shadow: 0px 0px 0px 0px rgba( 0, 0, 0, 0.12), 0 1px 4px 0 rgba( 0, 0, 0, 0.18);
+background-color: #fff;
+position: absolute;
+margin-left: 0px;
+}
+.comp{
+    width: 150px;
+    padding: 0px;
+    height: fit-content;
+    margin: 4px;
 }
 .completed{
-    margin-left: -19px;
-    margin-right: 0px;
-    padding-right: 70px;
-    padding-left: 40px;
-    border-top-right-radius: 3px;
-    border-bottom-right-radius: 3px;
+    margin: 0px;
 }
-.active{
-    padding-left: 30px;
-    padding-right: 0px;
+.items,.all,.active,.completed{
+    padding-top: 7px;
+  
 }
-h1{
-    width: auto;
-    margin-left: 105px;
-    font-size: xxx-large;
-}
-.pic{
-    margin-top: -20px;
-    margin-left: 190px;
-   padding-right: 53px; 
-  width: 20px;
+.items{
+    width: 70%;
 }
 }
