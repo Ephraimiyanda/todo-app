@@ -1,189 +1,156 @@
-const input=document.getElementById("inputs");
-const ol= document.querySelector("section");
-const light = document.querySelector(".pic");
-const add = document.querySelector(".enterBtn");
-const close = document.getElementsByTagName("span");
-const boxs =document.getElementsByTagName("button");
-const listItems = document.getElementsByTagName("li");
-const all = document.querySelector(".all");
-const activeButton = document.querySelector(".active");
-const completed = document.querySelector(".completed");
-const clearCompleted = document.querySelector(".comp");
-const items = JSON.parse(localStorage.getItem('list')) || [];
+document.addEventListener('DOMContentLoaded', function() {
+  const input = document.getElementById("input-text");
+  const todoList = document.getElementById("todo-list");
+  const modeToggle = document.getElementById("mode-toggle");
+  const addButton = document.getElementById("add-button");
+  const itemCount = document.getElementById("item-count");
+  const allFilter = document.querySelector(".all");
+  const active = document.querySelector(".list");
+  const completedFilter = document.querySelector(".completed");
+  const clearCompletedButton = document.getElementById("clear-completed");
+  const todos = JSON.parse(localStorage.getItem('todos')) || [];
+  const filters = document.querySelectorAll(".filter");
 
-//togle between light and dark mode
-light.addEventListener('click', () => {
-   document.body.classList.toggle('dark')
-   if(document.body.classList.contains('dark')){
-      document.getElementById("img").src="./images/icon-sun.svg"
-   }else{
-         document.getElementById("img").src="./images/icon-moon.svg"
-      }
-      }
-   
-)
-
-function inputLength(){
-   return input.value.length;
-}
-
-function createListElement(){
-
-   var li = document.createElement("li");
-
-   //create circle button
-   var circle = document.createElement("button");
-   circle.style.width="20px"
-   circle.style.height="20px"
-   circle.style.border="2px solid purple"
-   circle.style.borderRadius="10px"
-   circle.style.marginRight="30px"
-  
-   
-  //to show number of items remaining
-  const checkedList = document.querySelectorAll("li.crossed").length-1;
-  document.querySelector(".dynamic").innerHTML =listItems.length-checkedList;
- 
-
-
-  
-//toggle list style when circle button is clicked
-function toggleStyles(){ 
-        circle.classList.toggle('circle');
-        li.classList.toggle('crossed');
-        const checkedList = document.querySelectorAll("li.crossed").length;
-        document.querySelector(".dynamic").innerHTML =listItems.length-checkedList;
-}
-
-circle.addEventListener("click", toggleStyles);
-
-
-  //create x button
-   var img = document.createElement("span");
-   img.style.backgroundImage="url(./images/icon-cross.svg)"
-  img.style.backgroundRepeat="no-repeat"
-  img.style.float="right"
-  img.style.height="30px"
-   img.style.paddingTop="10px"
-   img.style.paddingRight="28px"
-   img.style.marginLeft="-30px"
-  
-  li.appendChild(circle);
-   li.appendChild(document.createTextNode(input.value));
-   ol.appendChild(li); 
-   li.appendChild(img);
-
-  input.value = "";
-
- 
-  //delete list when x is clicked
-    for (var i = 0; i < close.length; i++) {
-      close[i].onclick = function() {
-        var div = this.parentElement;
-        div.remove();
-        const checkedList = document.querySelectorAll("li.crossed").length;
-        document.querySelector(".dynamic").innerHTML =listItems.length-checkedList;
-      }
+  // Toggle between light and dark mode
+  modeToggle.addEventListener('click', function() {
+    document.body.classList.toggle('dark');
+    if (document.body.classList.contains('dark')) {
+      modeToggle.src = "./images/icon-sun.svg";
+    } else {
+      modeToggle.src = "./images/icon-moon.svg";
     }
+  });
+
+  function saveTodos() {
+    localStorage.setItem('todos', JSON.stringify(todos));
+  }
+
+  function renderTodoList() {
+    todoList.innerHTML = '';
+    todos.forEach(function(todo, index) {
+      const listItem = document.createElement('li');
+      listItem.innerHTML = `
+        <button class="toggle"></button>
+        <span>${todo.text}</span>
+        <button class="delete"></button>
+      `;
+
+      const toggleButton = listItem.querySelector('.toggle');
+      toggleButton.addEventListener('click', function() {
+        todo.completed = !todo.completed;
+        saveTodos();
+        renderTodoList();
+        updateItemCount();
+
+        
+      });
+
+      const deleteButton = listItem.querySelector('.delete');
+      deleteButton.addEventListener('click', function() {
+        todos.splice(index, 1);
+        saveTodos();
+        renderTodoList();
+        updateItemCount();
+      });
+
+      if (todo.completed) {
+        listItem.classList.add('crossed');
+        toggleButton.classList.toggle('toggled-btn');
+      }
+
+      todoList.appendChild(listItem);
+    });
+  }
+
+  function updateItemCount(filterType = 'all') {
+    const activeCount = todos.filter(todo => !todo.completed && filterType !== 'completed').length;
+    const completedCount = todos.filter(todo => todo.completed && filterType !== 'list').length;
   
- //function to show all list items
-function showAll(){
-  const checkedList = document.querySelectorAll("li.crossed").length;
-  document.querySelector(".dynamic").innerHTML =listItems.length-checkedList;
-     if(li.style.display="none"){
-     li.style.display="block"
-         activeButton.style.color="rgb(124, 122, 122)"
-     all.style.color="blue"
-     completed.style.color="rgb(124, 122, 122)"
-   }
-   }
- all.addEventListener("click",showAll);
+    itemCount.textContent = filterType === 'all' ? activeCount :
+      filterType === 'list' ? activeCount :
+      completedCount;
+  }
+  
 
-
-//function to show active list
-function active(){
-
-   activeButton.style.color="blue"
-  all.style.color="rgb(124, 122, 122)"
-  completed.style.color="rgb(124, 122, 122)"
-    if(li.classList.contains('crossed')){
-    li.style.display="none"
-   }else{
-      li.style.display="block"
-    }
-    const checkedList = document.querySelectorAll("li.crossed").length;
-    if(uncheckedList=0){
-      document.querySelector(".dynamic").innerHTML =0;
+  addButton.addEventListener('click', function() {
+    const todoText = input.value.trim();
+    if (todoText !== '') {
+      todos.push({ text: todoText, completed: false });
+      saveTodos();
+      renderTodoList();
+      updateItemCount();
+      input.value = '';
+      input.focus();
     }else{
-      return document.querySelector(".dynamic").innerHTML =listItems.length-checkedList;
+      alert("please enter something")
+    }
+  });
+
+  function addListAfterKeypress(event) {
+    const todoText = input.value.trim();
+    if (todoText !== '' && event.keyCode === 13) {
+      todos.push({ text: todoText, completed: false });
+      saveTodos();
+      renderTodoList();
+      updateItemCount();
+      input.value = '';
+      input.focus();
     }
   }
-activeButton.addEventListener("click", active);
 
+  input.addEventListener("keypress", addListAfterKeypress);
 
- //function to show completed
-function completedList(){
-  const checkedList = document.querySelectorAll("li.crossed").length;
-  document.querySelector(".dynamic").innerHTML =checkedList;
-  activeButton.style.color="rgb(124, 122, 122)"
-  all.style.color="rgb(124, 122, 122)"
-  completed.style.color="blue"
-  document.querySelector(".dynamic").innerHTML = checkedList; 
-   if(li.classList.contains('crossed')){
-     li.style.display="block"
-    }else{
-      li.style.display="none"
-    }
+  filters.forEach(function(filter) {
+    filter.addEventListener('click', function() {
+      const activeFilter = document.querySelector('.filter.active');
+      if (activeFilter) {
+        activeFilter.classList.remove('active');
+      }
+      filter.classList.add('active');
 
-     }
- completed.addEventListener("click",completedList);
+      if (filter === allFilter) {
+        todoList.querySelectorAll('li').forEach(function(item) {
+          item.style.display = 'grid';
+        });
+        updateItemCount('all');
+      }
+      
+      else if (filter === active) {
+        todoList.querySelectorAll('li').forEach(function(item) {
+          const todo = todos.find(function(todo) {
+            return todo.text === item.querySelector('span').textContent;
+          });
+          item.style.display = todo.completed ? 'none' : 'grid';
+        });
+        updateItemCount('list');
+      } 
+      
+      else if (filter === completedFilter) {
+        todoList.querySelectorAll('li').forEach(function(item) {
+          const todo = todos.find(function(todo) {
+            return todo.text === item.querySelector('span').textContent;
+          });
+          item.style.display = todo.completed ? 'grid' : 'none';
+        });
+        updateItemCount('completed');
+      }
+      
+    });
+  });
+  
 
- //function to clear completed
-function clearOut(){
-   if(li.classList.contains('crossed')){
-     li.remove();
-     return showAll()
-    }else{
-      li.style.display="block"
-    }
-   
-   }
- clearCompleted.addEventListener("click",clearOut)
+  clearCompletedButton.addEventListener('click', function() {
+    todos.forEach(function(todo, index) {
+      if (todo.completed) {
+        todos.splice(index, 1);
+      }
+    });
 
+    saveTodos();
+    renderTodoList();
+    updateItemCount();
+  });
 
-
-
-
-}
-
- //store in localstorage
-//  localStorage.setItem('items', JSON.stringify(createListElement()));
- 
-// console.log(localStorage)
-// console.log(listItems)
-
-function addListAfterClick(){
-  if(inputLength() > 0){
-    createListElement();
-  }
-}
-
-function addListAfterKeypress(event){
-   if(inputLength() > 0 && event.keyCode === 13){
-      createListElement();
-   }else if(inputLength() <= 0 && event.keyCode === 13){
-    alert("please input something")
-   }
-}
-add.addEventListener("click", addListAfterClick)
-input.addEventListener("keypress", addListAfterKeypress); 
-
-
-
-
-
-
-
- 
-
-
+  renderTodoList();
+  updateItemCount();
+});

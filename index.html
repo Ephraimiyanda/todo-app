@@ -2,60 +2,43 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
-
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
-  <title> Todo app</title>
-  <link rel="stylesheet" href="./style.css">
-
-  
-
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Todo app</title>
 </head>
 <body>
-
   <div class="todo">
     <div class="mode">
-      <div class="pic"> <h1>Todo</h1><img id="img" src="./images/icon-moon.svg" width="30" height="30"> </div>
-     </div>
-    </div>
-
-
-    <div class="todo-body">
-     <div class="input-container"> <input id="inputs" type="text"  placeholder="◯ create a new todo... "><button class="enterBtn">Add</button></div>
-   
-      <div class="container">
-       <section >
-      </section>
-       
+      <div class="pic">
+        <h1>Todo</h1>
+        <img id="mode-toggle" src="./images/icon-moon.svg" width="30" height="30">
       </div>
-      <div>
-        <ul class="lower">
-          <div class="items"><button class="dynamic">0</button> items left</div>
-         
-          <ul class="inside">
-            <div class="all">All </div>
-            <div class="active">  Active</div>
-            <div class="completed">Completed</div>
-          </ul>
-       
-          <div class="comp"> Clear Completed</div>
-        </ul>
     </div>
-    
+  </div>
 
-   
-   
-     
-   
-  
-   
-</div>
-  <script type="text/javascript" src="./script.js"></script>
+  <div class="todo-body">
+    <div class="input-container">
+      <input id="input-text" type="text" placeholder="◯ create a new todo...">
+      <button id="add-button">Add</button>
+    </div>
+
+    <div class="container">
+      <section id="todo-list"></section>
+    </div>
+
+    <div>
+      <ul class="lower">
+        <div class="items"><button id="item-count">0</button> items left</div>
+        <ul class="inside">
+          <div class="filter all active">All</div>
+          <div class="filter list ">Active</div>
+          <div class="filter completed">Completed</div>
+        </ul>
+        <div id="clear-completed" class="comp">Clear Completed</div>
+      </ul>
+    </div>
+  </div>
+
+  <script src="./script.js"></script>
 </body>
 </html>

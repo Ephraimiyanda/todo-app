@@ -13,11 +13,22 @@ h1{
     display: flex;
 }
 input{
-   margin-right: 3px;
-    border-radius: 4px;
+    padding-left: 5px;
+    margin-right: 3px;
+    border-radius: 6px;
     border-width: 1px;
-    width:90%;
+    width:85%;
     height: 30px;
+}
+input:focus{
+    outline: 0px;
+}
+#add-button{
+    width: 15%;
+    border: 0px;
+    border-radius: 4px;
+    background: #fff;
+    cursor: pointer;
 }
 .enterBtn{
     color:rgb(122, 119, 119) ;
@@ -62,7 +73,9 @@ input{
     overflow:auto;
 
 }
-
+.container::-webkit-scrollbar{
+width: 1px;
+}
 
 .mode{
     display:flex;
@@ -86,11 +99,18 @@ margin-top: 60px;
 
 
 
-.close {
-    position: absolute;
-    right: 0;
-    top: 0;
-  padding: 12px 16px 12px 16px;
+.delete{
+    padding: 12px 16px 12px 16px;
+    background-image: url(./images/icon-cross.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #fff;
+    width: fit-content;
+    float: right;
+    border: 0px;
+    grid-column: span 9;
+    grid-column-start:10 ;
+    cursor: pointer;
   }
   
   .close:hover {
@@ -99,28 +119,34 @@ margin-top: 60px;
   }
   
 li{
-    display: block;
+    display: grid;
+    grid-template-columns: repeat(10, minmax(0, 1fr));
     text-decoration: none;
-    cursor: pointer;
     list-style: none;
-    padding-left:10px;
+    padding-left: 5px;
     padding-top: 10px;
     padding-bottom: 10px;
     border-bottom: 1px solid;
     border-width: 1px;
     border-color: rgb(173, 168, 168);
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+}
+li span{
+    padding: 0px;
+    margin-left: 10px;
+    grid-column-start: 2;
+    grid-column: span 7 / span 7;
+    overflow: auto;
 }
 .crossed{
     color: rgb(122, 119, 119);
     text-decoration: line-through;
    
 }
-.cross{
-   display: flex;
-    margin-top: -20px;
-    margin-left: 340px;
-  
-}
+
 .lower{
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
@@ -164,7 +190,7 @@ li{
    background-color: white;
    color: rgb(124, 122, 122);
 }
-.items,.all,.active,.completed{
+.items,.all,.list,.completed,.filter{
     padding-left: 0px;
     font-size: small;
    margin-right: 14px;
@@ -174,6 +200,7 @@ li{
     cursor: pointer;
     color: rgb(124, 122, 122);
 }
+
 .items{
     margin-right: 0px;
     width: 200px;
@@ -181,7 +208,6 @@ li{
     display: flex;
 }
 .all{
-    color: blue;
     margin-left: 5px;
 }
 
@@ -194,13 +220,31 @@ li{
 .last{
     text-align: center;
 }
-.circle{
-    
-    background:purple;
+.toggle{
+    width: 20px;
+    height: 20px;
+    border: 2px solid  purple;
+    border-radius: 10px;
+   background: #fff;
+   cursor: pointer;
+}
+.toggled-btn{
+    border: 0px;
+    border-radius: 10px;
+    background-image:url(./images/icon-check.svg),linear-gradient(to right, rgb(110, 110, 211) ,rgb(184, 26, 184) ) ;
     background-repeat:no-repeat;
     background-position:center;
-    background-image: url(./images/icon-check.svg);
 }
+#item-count{
+    margin-top: -0.6px;
+    width: 15px;
+    border: 0px;
+    background-color: #fff;
+}
+.active{
+    color: blue;
+}
+
 
 /*light mode*/
 .dark input {
@@ -220,10 +264,8 @@ li{
     background-image: url(./images/bg-desktop-dark.jpg);
 }
 body.dark{
-   
-
     background-repeat: no-repeat;
-    background-color: rgb(77, 76, 76);
+    background-color: rgb(57, 57, 57);
 }
 .dark .circle{
     background-color: purple;
@@ -235,14 +277,14 @@ body.dark{
     color: white;
   
 }
-.dark .items,.dark .all,.dark .active,.dark .completed,.dark .comp {
+.dark .items,.dark .all,.dark .list,.dark .completed,.dark .comp {
     list-style: none;
     background-color:  rgb(61, 60, 60);
     border: none;
     cursor: pointer;
     color: rgb(124, 122, 122);
 }
-.dark .all{
+.dark .active{
     color: blue;
 }
 .dark button{
@@ -251,8 +293,14 @@ body.dark{
 .dark .inside{
     background-color:rgb(61, 60, 60) ;
 }
-
-
+.dark #item-count{
+    background: rgb(61, 60, 60);
+    color: #fff;
+}
+.dark #add-button{
+    background: rgb(61, 60, 60);
+    color: #fff;
+}
 
 
 @media  (max-width:540px) {
@@ -276,8 +324,8 @@ body.dark{
    
     padding-right:0px;
 }
-.items{
-    margin-top: -2px;
+#item-count{
+    margin-top: -4px;
 }
 .inside{
     height: 30px;
@@ -286,24 +334,31 @@ body.dark{
     display: flex;
     justify-content: space-evenly;
     box-shadow: 0px 0px 0px 0px rgba( 0, 0, 0, 0.12), 0 1px 4px 0 rgba( 0, 0, 0, 0.18);
-background-color: #fff;
-position: absolute;
-margin-left: 0px;
+    background-color: #fff;
+    position: absolute;
+    margin-left: 0px;
 }
 .comp{
     width: 150px;
     padding: 0px;
     height: fit-content;
     margin: 4px;
+    margin-top: 7px;
 }
 .completed{
     margin: 0px;
+    
 }
-.items,.all,.active,.completed{
+.items,.all,.list,.completed{
     padding-top: 7px;
   
 }
 .items{
     width: 70%;
+}
+}
+@media (max-width:373px) {
+    .delete{
+        padding-right: 0px;
 }
 }
